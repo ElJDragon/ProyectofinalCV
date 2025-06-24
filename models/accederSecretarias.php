@@ -1,5 +1,5 @@
 <?php
-include('models/conexion.php');
+include 'models/conexion.php';
 $conn = new conexion();
 $con = $conn->conectar();
 $sql = "SELECT * FROM usuarios1;";

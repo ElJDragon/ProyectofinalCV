@@ -79,17 +79,9 @@ if (!isset($_SESSION['usuario'])) {
         <a href="reportes/reporte.php" class="easyui-linkbutton" iconCls="icon-ok" plain="true" target="_blank">Reporte</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="reporte()">Generar Reporte Especifico</a>
     </div>
-<div id="toolbar1">
-    <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuario()">Nuevo Usuario</a>
-    <?php }  ?>
-    </div>
 
-    <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
-        <div id="toolbar1">
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuario()">Nuevo uSUAIO</a>
-        </div>
-        <?php }; ?>
+
+    
     <div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
             <h3>Registro Estudiante</h3>
