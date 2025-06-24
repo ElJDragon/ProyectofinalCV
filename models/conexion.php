@@ -5,7 +5,7 @@ class Conexion {
         $port = getenv("DB_PORT");
         $dbname = getenv("DB_NAME");
         $user = getenv("DB_USER");
-        $password = getenv("DB_PASSWORD");
+        $password = getenv("DB_Psw");
 
         $conn = new mysqli($host, $user, $password, $dbname, (int)$port);
 
