@@ -36,7 +36,7 @@ if (!isset($_SESSION['usuario'])) {
 </style>
 </head>
 <body>
-    <h2>Estudiantes UTA</h2>
+    <h2>Gestion UTA</h2>
 
     <table id="dg" title="Estudiantes" class="easyui-datagrid" style="width:1000px;height: 500px"
             url="models/acceder.php"
@@ -54,7 +54,7 @@ if (!isset($_SESSION['usuario'])) {
     </table>
     <br>
     <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
-<table id="dg" title="Usuarios" class="easyui-datagrid" style="width:1000px;height: 500px"
+<table id="dgUsuarios" title="Usuarios" class="easyui-datagrid" style="width:1000px;height: 500px"
             url="models/accederSecretarias.php"
             toolbar="#toolbar1" pagination="true"
             rownumbers="true" fitColumns="true" singleSelect="true">
