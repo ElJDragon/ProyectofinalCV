@@ -52,17 +52,44 @@ if (!isset($_SESSION['usuario'])) {
             </tr>
         </thead>
     </table>
+    <br>
+    <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
+<table id="dg" title="Usuarios" class="easyui-datagrid" style="width:1000px;height: 500px"
+            url="models/accederSecretarias.php"
+            toolbar="#toolbar1" pagination="true"
+            rownumbers="true" fitColumns="true" singleSelect="true">
+        <thead>
+            <tr>
+                <th field="user" width="50">Usuario</th>
+                <th field="psw" width="50">Contrasenia</th>
+                <th field="intentos" width="50"># Intentos</th>
+                <th field="bloqueado" width="50">Bloqueado</th>
+            </tr>
+        </thead>
+    </table>
+    <?php }?>
 
     <div id="toolbar">
     <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">Nuevo Estudiante</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Editar Estudiante</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Borrar Estudiante</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Borrar Estudiante</a>
     <?php }  ?>
         <a href="reportes/reporte.php" class="easyui-linkbutton" iconCls="icon-ok" plain="true" target="_blank">Reporte</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" plain="true" onclick="reporte()">Generar Reporte Especifico</a>
     </div>
+<div id="toolbar1">
+    <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuario()">Nuevo Usuario</a>
+    <?php }  ?>
+    </div>
 
+    <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
+        <div id="toolbar1">
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuario()">Nuevo uSUAIO</a>
+        </div>
+        <?php }; ?>
     <div id="dlg" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
             <h3>Registro Estudiante</h3>
@@ -92,6 +119,30 @@ if (!isset($_SESSION['usuario'])) {
         <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUser()" style="width:90px">Guardar</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancelar</a>
     </div>
+
+        <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario'] === 'admin') { ?>
+        <div id="toolbar1">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUsuario()">Nuevo Usuario</a>
+            </div>
+            <!-- Diálogo para Nuevo Usuario -->
+<div id="dlgUsuario" class="easyui-dialog" style="width:400px" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons-usuario'">
+    <form id="fmUsuario" method="post" novalidate style="margin:0;padding:20px 50px">
+        <h3>Registro Usuario</h3>
+        <div style="margin-bottom:10px">
+            <input name="user" class="easyui-textbox" required="true" label="Usuario:" style="width:100%">
+        </div>
+        <div style="margin-bottom:10px">
+            <input name="psw" class="easyui-textbox" required="true" label="Contraseña:" type="password" style="width:100%">
+        </div>
+    </form>
+</div>
+<div id="dlg-buttons-usuario">
+    <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveUsuario()" style="width:90px">Guardar</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="$('#dlgUsuario').dialog('close')" style="width:90px">Cancelar</a>
+</div>
+    <?php }  ?>
+    
+
 
     <script type="text/javascript">
         var url;
@@ -213,6 +264,35 @@ if (!isset($_SESSION['usuario'])) {
                 window.open('reportes/reporteparametro.php?cedula=' + cedula, '_blank');
             }
         }
+        function newUsuario() {
+    $('#dlgUsuario').dialog('open').dialog('center').dialog('setTitle', 'Nuevo Usuario');
+    $('#fmUsuario').form('clear');
+    }
+
+function saveUsuario() {
+    $('#fmUsuario').form('submit', {
+        url: 'models/agragarUsuarios.php',
+        onSubmit: function() {
+            return $(this).form('validate');
+        },
+        success: function(result) {
+            try {
+                var result = JSON.parse(result);
+                $.messager.show({
+                    title: 'Resultado',
+                    msg: result
+                });
+                $('#dlgUsuario').dialog('close');
+                $('#dg').datagrid('reload');
+            } catch (e) {
+                $.messager.show({
+                    title: 'Error',
+                    msg: "Error al procesar respuesta del servidor."
+                });
+            }
+        }
+    });
+}
     </script>
 
 </body>
