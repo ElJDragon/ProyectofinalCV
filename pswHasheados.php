@@ -7,7 +7,7 @@ $sql = "SELECT user, psw FROM usuarios1";
 $stmt = $conn->query($sql);
 
 while ($row = $stmt->fetch_assoc()) {
-    $usuario = $row['user'];
+    $usuario = $row['admin'];
     $clave_original = $row['psw'];
     $clave_hasheada = password_hash($clave_original, PASSWORD_DEFAULT);
 
