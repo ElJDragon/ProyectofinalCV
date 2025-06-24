@@ -1,6 +1,6 @@
 <?php
-include 'models/conexion.php';
-$conn = new conexion();
+include_once 'conexion.php';
+$conn = new Conexion();
 $con = $conn->conectar();
 $sql = "SELECT * FROM usuarios1;";
 $respuesta = $con->query($sql);
