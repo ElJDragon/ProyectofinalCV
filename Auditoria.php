@@ -1,7 +1,9 @@
 <?php
 include('models/conexion.php');
+$conn = new conexion();
+$con = $conn->conectar();
 $sql = "SELECT id,usuario,fecha,ip,navegador FROM auditoria_usuarios;";
-$result=$conn->query($sql);
+$result=$con->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
