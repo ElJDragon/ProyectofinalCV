@@ -63,7 +63,7 @@ if (isset($_SESSION['usuario'])) {
             <li><a href="index.php?action=contactanos">Contactanos</a></li>
             <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario']=='admin'){?>
                     <li><a href="index.php?action=auditoria">Auditorias</a></li>
-            <?php   }  ?>
+            <?php } ?>
         </ul>
     </nav>
 
