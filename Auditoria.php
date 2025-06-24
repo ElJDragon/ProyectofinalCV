@@ -34,5 +34,6 @@ $result=$con->query($sql);
 
         ?>
     </table>
+    
 </body>
 </html>

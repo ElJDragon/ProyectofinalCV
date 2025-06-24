@@ -61,6 +61,9 @@ if (isset($_SESSION['usuario'])) {
             <li><a href="index.php?action=nosotros">Nosotros</a></li>
             <li><a href="index.php?action=servicios">Servicios</a></li>
             <li><a href="index.php?action=contactanos">Contactanos</a></li>
+            <?php if(isset($_SESSION['usuario']) && $_SESSION['usuario']=='admin'){?>
+                    <li><a href="index.php?action=Auditoria">Auditorias></a></li>
+            <?php   }  ?>
         </ul>
     </nav>
 
