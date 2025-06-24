@@ -12,3 +12,6 @@ RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
 # Exponer el puerto estándar de Apache
 EXPOSE 80
+
+#uso de mysqli
+RUN docker-php-ext-install mysqli
