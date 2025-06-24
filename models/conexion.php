@@ -7,7 +7,7 @@ class Conexion {
         $user = getenv("DB_USER");
         $password = getenv("DB_PASSWORD");
 
-        $conn = new mysqli($host, $user, $password, $dbname, (int)$port);
+        $conn = mysqli_connect($host, $user, $password, $dbname, (int)$port);
 
         if ($conn->connect_error) {
             die("Conexión fallida: " . $conn->connect_error);
