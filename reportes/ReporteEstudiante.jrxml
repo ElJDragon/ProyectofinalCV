@@ -11,7 +11,7 @@
     <field name="estApellido" class="java.lang.String"/>
     <field name="estTelefono" class="java.lang.String"/>
     <field name="estDireccion" class="java.lang.String"/>
-    <background>
+    <background> 
         <band splitType="Stretch"/>
     </background>
     <title>
